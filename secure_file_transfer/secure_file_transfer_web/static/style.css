@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+#animation-area {
+  margin-top: 30px;
+  height: 100px;
+  position: relative;
+}
+
+.computer, .file {
+  font-size: 2rem;
+  position: absolute;
+  top: 40px;
+}
+
+.client {
+  left: 0;
+}
+.server {
+  right: 0;
+}
+
+.file {
+  left: 40px;
+  transition: left 0.5s ease;
+}
+
+.file-fail {
+  animation: shake 0.5s infinite;
+  color: red;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+

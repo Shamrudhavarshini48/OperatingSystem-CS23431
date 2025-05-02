@@ -1,0 +1,40 @@
+function initChart() {
+  const ctx = document.getElementById("transferChart").getContext("2d");
+
+  // Create gradient
+  const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+  gradient.addColorStop(0, 'rgba(0, 123, 255, 0.4)');
+  gradient.addColorStop(1, 'rgba(0, 123, 255, 0)');
+
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Transfer Speed (KB/s)',
+        data: [],
+        borderColor: '#007bff',
+        backgroundColor: gradient,     // 🌈 Gradient fill
+        borderWidth: 2,
+        fill: true,                    // <- Enable fill under line
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true
+        }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'Chunks' }
+        },
+        y: {
+          title: { display: true, text: 'Speed (KB/s)' }
+        }
+      }
+    }
+  });
+}

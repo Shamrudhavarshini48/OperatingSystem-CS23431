@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📦 Secure File Transfer Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    #animation-area {
+      margin-top: 30px;
+      height: 100px;
+      position: relative;
+    }
+    .computer, .file {
+      font-size: 2rem;
+      position: absolute;
+      top: 10px;
+    }
+    .client { left: 10px; }
+    .server { right: 10px; }
+    .file {
+      left: 60px;
+      transition: left 0.5s ease;
+    }
+    .file.glow {
+      animation: glowEffect 1s infinite alternate;
+    }
+    @keyframes glowEffect {
+      from { text-shadow: 0 0 5px #007bff, 0 0 10px #007bff; }
+      to   { text-shadow: 0 0 10px #00c8ff, 0 0 20px #00c8ff; }
+    }
+
+    canvas {
+      max-width: 100%;
+    }
+
+    #map {
+      height: 400px;
+      margin-top: 40px;
+    }
+
+    .file-marker {
+      font-size: 1.5rem;
+    }
+
+    .leaflet-div-icon {
+      background: transparent;
+      border: none;
+    }
+  </style>
+</head>
+<body class="container py-4">
+  <h2 class="mb-4">📊 Secure File Transfer Dashboard</h2>
+
+  <button id="startBtn" class="btn btn-primary mb-3">Start Transfer</button>
+
+  <!-- 🔄 Live Status -->
+  <div id="statusMessage" class="alert alert-info mt-3" role="alert">
+    Status: Waiting to start...
+  </div>
+
+  <!-- 📈 Transfer Speed Chart -->
+  <canvas id="transferChart" width="600" height="200" class="my-4"></canvas>
+
+  <!-- ⏳ Progress Bar -->
+  <div class="progress my-4">
+    <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+         style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      0%
+    </div>
+  </div>
+
+  <!-- 🖥️ Animation Area -->
+  <div id="animation-area">
+    <div class="computer client">🖥️ Client</div>
+    <div class="file" id="fileIcon">📄</div>
+    <div class="computer server">🖥️ Server</div>
+  </div>
+
+  <!-- 🌍 Map Section -->
+  <h4 class="mt-5">🌎 Server & Client Locations</h4>
+  <div id="map"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/script.js"></script>
+</body>
+</html>
